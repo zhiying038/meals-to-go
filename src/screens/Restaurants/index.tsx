@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { StatusBar, StyleSheet, SafeAreaView, View } from "react-native";
+import { StatusBar, SafeAreaView, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { RestaurantInfo } from "components/RestaurantInfo";
+import { tw } from "config/tailwind";
 
 const RestaurantsScreen: React.FC = () => {
   const [searchText, setSearchText] = useState<string>("");
@@ -11,35 +12,22 @@ const RestaurantsScreen: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.search}>
+    <SafeAreaView
+      style={[tw("flex-1"), { marginTop: StatusBar.currentHeight }]}
+    >
+      <View style={tw("p-4")}>
         <Searchbar
           value={searchText}
           onChange={(e) => onChangeSearch(e.nativeEvent.text)}
           placeholder="Search..."
         />
       </View>
-      <View style={styles.list}>
+      <View style={tw("flex-1 p-4 bg-blue-500")}>
         <RestaurantInfo />
       </View>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-  },
-  search: {
-    padding: 16,
-  },
-  list: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: "blue",
-  },
-});
 
 export const Restaurants = RestaurantsScreen;
 export default Restaurants;
