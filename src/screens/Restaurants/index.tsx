@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
     padding: 16,
+    backgroundColor: "blue",
   },
 });
 
