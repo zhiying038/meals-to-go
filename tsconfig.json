@@ -12,7 +12,8 @@
       "screens": ["./src/screens"],
       "screens/*": ["./src/screens/*"],
       "components/*": ["./src/components/*"],
-      "utils/*": ["./src/utils/*"]
+      "utils/*": ["./src/utils/*"],
+      "config/*": ["./src/config/*"]
     }
   }
 }

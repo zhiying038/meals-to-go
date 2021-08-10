@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, Image } from "react-native";
+import { tw } from "config/tailwind";
 import { Props } from "./props";
 
 const RestaurantInfoComponent: React.FC<Props> = (props) => {
@@ -7,32 +8,12 @@ const RestaurantInfoComponent: React.FC<Props> = (props) => {
   const { name, photos } = restaurant || {};
 
   return (
-    <View style={styles.card}>
-      <View style={styles.innerCard}>
-        <Image source={{ uri: photos?.[0] }} style={styles.image} />
-      </View>
-      <Text style={styles.title}>{name}</Text>
+    <View style={tw("bg-white px-4 pt-4")}>
+      <Image source={{ uri: photos?.[0] }} style={[tw("p-4 h-40")]} />
+      <Text style={tw("py-2")}>{name}</Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  card: {
-    elevation: 5,
-    backgroundColor: "white",
-  },
-  image: {
-    height: 150,
-    padding: 20,
-    resizeMode: "stretch",
-  },
-  innerCard: {
-    padding: 15,
-  },
-  title: {
-    padding: 16,
-  },
-});
 
 RestaurantInfoComponent.defaultProps = {
   restaurant: {
