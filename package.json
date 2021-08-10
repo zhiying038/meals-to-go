@@ -18,14 +18,16 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-paper": "^4.9.2",
     "react-native-web": "~0.13.12",
-    "tailwind-rn": "^3.0.1",
-    "tailwindcss-elevation": "^1.0.1"
+    "styled-components": "^5.3.0",
+    "tailwind-rn": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@react-native-community/eslint-config": "^3.0.0",
+    "@tailwindcss/typography": "^0.4.1",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
+    "@types/styled-components": "^5.1.12",
     "eslint": "^7.32.0",
     "prettier": "^2.3.2",
     "tailwindcss": "^2.2.7",

@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 
 export type Props = {
   restaurant?: RestaurantProps;
+  className?: string;
 };
 
 export type RestaurantProps = {
