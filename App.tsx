@@ -1,18 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, SafeAreaView } from "react-native";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import { Restaurants } from "./src/screens";
 
-export default function App() {
+const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>React Native Blank Canvas</Text>
-    </SafeAreaView>
+    <>
+      <Restaurants />
+      <ExpoStatusBar style="auto" />
+    </>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default App;
