@@ -7,7 +7,7 @@ import { useStyles } from "./styles";
 
 const RestaurantInfoComponent: React.FC<Props> = (props) => {
   const { restaurant, className } = props;
-  const { name, photos } = restaurant || {};
+  const { name, photos, address } = restaurant || {};
 
   const { wrapperShadowStyles } = useStyles();
 
@@ -18,9 +18,10 @@ const RestaurantInfoComponent: React.FC<Props> = (props) => {
         wrapperShadowStyles,
       ]}
     >
-      <View>
-        <Image source={{ uri: photos?.[0], height: 100 }} resizeMode="cover" />
-        <Text style={tw("py-2 text-primary")}>{name}</Text>
+      <Image source={{ uri: photos?.[0], height: 150 }} resizeMode="cover" />
+      <View style={tw("py-2")}>
+        <Text style={tw("text-primary text-base font-semibold")}>{name}</Text>
+        <Text style={tw("text-sm")}>{address}</Text>
       </View>
     </View>
   );
