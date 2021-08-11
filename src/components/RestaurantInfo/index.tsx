@@ -3,15 +3,25 @@ import { Text, View, Image } from "react-native";
 import classnames from "classnames";
 import { tw } from "config/tailwind";
 import { Props } from "./props";
+import { useStyles } from "./styles";
 
 const RestaurantInfoComponent: React.FC<Props> = (props) => {
   const { restaurant, className } = props;
   const { name, photos } = restaurant || {};
 
+  const { wrapperShadowStyles } = useStyles();
+
   return (
-    <View style={tw(classnames("bg-white px-4 pt-4", className))}>
-      <Image source={{ uri: photos?.[0] }} style={[tw("p-4 h-40")]} />
-      <Text style={tw("py-2 text-primary")}>{name}</Text>
+    <View
+      style={[
+        tw(classnames("bg-white px-4 pt-4", className)),
+        wrapperShadowStyles,
+      ]}
+    >
+      <View>
+        <Image source={{ uri: photos?.[0], height: 100 }} resizeMode="cover" />
+        <Text style={tw("py-2 text-primary")}>{name}</Text>
+      </View>
     </View>
   );
 };

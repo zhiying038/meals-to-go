@@ -22,7 +22,7 @@ const RestaurantsScreen: React.FC = () => {
           placeholder="Search..."
         />
       </View>
-      <View style={tw("flex-1 p-4 bg-blue-500")}>
+      <View style={tw("flex-1 p-4")}>
         <RestaurantInfo />
       </View>
     </SafeAreaView>
