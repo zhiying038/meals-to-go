@@ -1,11 +1,11 @@
 import React from "react";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { Restaurants } from "./src/screens";
+import { RootNavigator } from "./src/navigation";
 
 const App = () => {
   return (
     <>
-      <Restaurants />
+      <RootNavigator />
       <ExpoStatusBar style="auto" />
     </>
   );

@@ -13,6 +13,7 @@ module.exports = function (api) {
             components: ["./src/components"],
             config: ["./src/config"],
             assets: ["./src/assets"],
+            navigation: ["./src/navigation"],
           },
           extensions: [".tsx", ".ts", ".js", ".jsx", ".json"],
         },
