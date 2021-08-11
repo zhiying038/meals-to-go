@@ -8,15 +8,17 @@ import { useStyles } from "./styles";
 
 const RestaurantInfoComponent: React.FC<Props> = (props) => {
   const { restaurant, className } = props;
-  const { name, photos, address, rating, isOpen } = restaurant || {};
+  const { name, photos, address, rating, isOpen, isClosedTemporarily } =
+    restaurant || {};
 
-  const { wrapperShadowStyles } = useStyles();
+  const { wrapperShadowStyles, shopClosedStyles } = useStyles();
 
   return (
     <View
       style={[
         tw(classnames("bg-white px-4 pt-4", className)),
         wrapperShadowStyles,
+        isClosedTemporarily || !isOpen ? shopClosedStyles : null,
       ]}
     >
       <Image source={{ uri: photos?.[0], height: 150 }} resizeMode="cover" />
@@ -28,11 +30,11 @@ const RestaurantInfoComponent: React.FC<Props> = (props) => {
           <Text
             style={tw(
               `flex-grow-0 text-white text-base px-2 ${
-                isOpen ? "bg-success" : "bg-error"
+                isOpen && !isClosedTemporarily ? "bg-success" : "bg-error"
               }`
             )}
           >
-            {isOpen ? "Open" : "Closed"}
+            {isOpen && !isClosedTemporarily ? "Open" : "Closed"}
           </Text>
         </View>
 

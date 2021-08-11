@@ -11,5 +11,11 @@ export const useStyles = () => {
     },
   ]);
 
-  return { wrapperShadowStyles };
+  const shopClosedStyles = StyleSheet.flatten([
+    {
+      opacity: 0.5,
+    },
+  ]);
+
+  return { wrapperShadowStyles, shopClosedStyles };
 };
