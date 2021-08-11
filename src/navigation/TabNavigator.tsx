@@ -15,6 +15,12 @@ export type TabsList = {
   settings: undefined;
 };
 
+const TabIconList = {
+  restaurant: "md-restaurant",
+  map: "md-map",
+  settings: "md-settings",
+};
+
 const Tab = createBottomTabNavigator<TabsList>();
 
 export const TabNavigator = () => {
@@ -30,14 +36,7 @@ export const TabNavigator = () => {
       }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
-          let iconName;
-          if (route.name === "restaurant") {
-            iconName = "md-restaurant";
-          } else if (route.name === "settings") {
-            iconName = "md-settings";
-          } else if (route.name === "map") {
-            iconName = "md-map";
-          }
+          const iconName = TabIconList[route.name];
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: colors.primary,
