@@ -5883,6 +5883,14 @@
     "--tw-bg-opacity": 1,
     "backgroundColor": "rgba(120, 53, 15, var(--tw-bg-opacity))"
   },
+  "bg-success": {
+    "--tw-bg-opacity": 1,
+    "backgroundColor": "rgba(19, 128, 0, var(--tw-bg-opacity))"
+  },
+  "bg-error": {
+    "--tw-bg-opacity": 1,
+    "backgroundColor": "rgba(208, 66, 27, var(--tw-bg-opacity))"
+  },
   "bg-green-50": {
     "--tw-bg-opacity": 1,
     "backgroundColor": "rgba(236, 253, 245, var(--tw-bg-opacity))"

@@ -8,7 +8,7 @@ import { useStyles } from "./styles";
 
 const RestaurantInfoComponent: React.FC<Props> = (props) => {
   const { restaurant, className } = props;
-  const { name, photos, address, rating } = restaurant || {};
+  const { name, photos, address, rating, isOpen } = restaurant || {};
 
   const { wrapperShadowStyles } = useStyles();
 
@@ -21,7 +21,21 @@ const RestaurantInfoComponent: React.FC<Props> = (props) => {
     >
       <Image source={{ uri: photos?.[0], height: 150 }} resizeMode="cover" />
       <View style={tw("py-2")}>
-        <Text style={tw("text-primary text-base font-semibold")}>{name}</Text>
+        <View style={tw("flex-row")}>
+          <Text style={tw("text-primary text-base font-semibold flex-grow")}>
+            {name}
+          </Text>
+          <Text
+            style={tw(
+              `flex-grow-0 text-white text-base px-2 ${
+                isOpen ? "bg-success" : "bg-error"
+              }`
+            )}
+          >
+            {isOpen ? "Open" : "Closed"}
+          </Text>
+        </View>
+
         <View style={tw("flex-row items-start justify-start")}>
           <AirbnbRating
             defaultRating={rating}
