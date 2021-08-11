@@ -16,7 +16,7 @@ const RestaurantInfoComponent: React.FC<Props> = (props) => {
   return (
     <View
       style={[
-        tw(classnames("bg-white px-4 pt-4", className)),
+        tw(classnames("bg-white p-4", className)),
         wrapperShadowStyles,
         isClosedTemporarily || !isOpen ? shopClosedStyles : null,
       ]}
