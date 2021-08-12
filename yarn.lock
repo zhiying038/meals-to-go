@@ -2506,6 +2506,13 @@ camelcase@^5.0.0, camelcase@^5.3.1:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
+camelize-ts@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/camelize-ts/-/camelize-ts-1.0.4.tgz#dbb0b0371f95a608e8eb9f27477a768539ee838a"
+  integrity sha512-WbKMBNIF1kidyejDmGBgBfIcxaX0/74SJLYSK/nflNI3pgV3cJuFYd4mXaLEFx8XNaoRDvpqS6RJsxA7LdNsnw==
+  dependencies:
+    lodash.camelcase "^4.3.0"
+
 camelize@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/camelize/-/camelize-1.0.0.tgz#164a5483e630fa4321e5af07020e531831b2609b"
@@ -4816,6 +4823,11 @@ lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
+
+lodash.camelcase@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
+  integrity sha1-soqmKIorn8ZRA1x3EfZathkDMaY=
 
 lodash.castarray@^4.4.0:
   version "4.4.0"

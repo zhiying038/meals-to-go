@@ -3,7 +3,7 @@ import { Text, View, Image } from "react-native";
 import { AirbnbRating } from "react-native-ratings";
 import classnames from "classnames";
 import { tw } from "config/tailwind";
-import { Props } from "./props";
+import { Props, RestaurantProps } from "./props";
 import { useStyles } from "./styles";
 
 const RestaurantInfoComponent: React.FC<Props> = (props) => {
@@ -67,4 +67,5 @@ RestaurantInfoComponent.defaultProps = {
 };
 
 export const RestaurantInfo = RestaurantInfoComponent;
+export type RestaurantInfoProps = RestaurantProps;
 export default RestaurantInfo;
