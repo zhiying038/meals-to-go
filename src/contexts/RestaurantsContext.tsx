@@ -1,30 +1,49 @@
-import React from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { RestaurantInfoProps } from "components/RestaurantInfo";
+import {
+  restaurantsRequest,
+  restaurantsTransform,
+} from "services/restaurant.service";
 
 export type ContextProps = {
-  restaurant: RestaurantInfoProps[];
+  restaurants: RestaurantInfoProps[];
+  isLoading: boolean;
+  error?: any;
 };
 
-export const RestaurantsContext = React.createContext<ContextProps>(null);
+export const RestaurantsContext = createContext<ContextProps>(null);
 
-export const RestaurantsContextProvider = (props) => {
-  const { children } = props;
+export const RestaurantsContextProvider = ({ children }) => {
+  const [restaurants, setRestaurants] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const retrieveRestaurants = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      restaurantsRequest()
+        .then(restaurantsTransform)
+        .then((results) => {
+          setIsLoading(false);
+          setRestaurants(results);
+        })
+        .catch((err) => {
+          setIsLoading(false);
+          setError(err);
+        });
+    }, 2000);
+  };
+
+  useEffect(() => {
+    retrieveRestaurants();
+  }, []);
 
   return (
     <RestaurantsContext.Provider
       value={{
-        restaurant: [
-          {
-            name: "Some Restaurant",
-            photos: [
-              "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
-            ],
-            address: "100 Some random street",
-            isOpen: true,
-            rating: 3,
-            isClosedTemporarily: false,
-          },
-        ],
+        restaurants,
+        isLoading,
+        error,
       }}
     >
       {children}
