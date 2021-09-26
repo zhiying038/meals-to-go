@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export type Props = {
   restaurant?: RestaurantProps;
   className?: string;
@@ -7,7 +5,7 @@ export type Props = {
 
 export type RestaurantProps = {
   name: string;
-  icon?: ReactNode;
+  icon: string;
   photos: string[];
   vicinity: string;
   isOpen: boolean;
