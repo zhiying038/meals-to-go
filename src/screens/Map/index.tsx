@@ -4,8 +4,9 @@ import { MapSearch, MapCallout } from "components/Map";
 import { tw } from "config/tailwind";
 import { LocationContext } from "contexts/LocationContext";
 import { RestaurantsContext } from "contexts/RestaurantsContext";
+import { Props } from "./props";
 
-const MapScreen: React.FC = () => {
+const MapScreen: React.FC<Props> = ({ navigation }) => {
   const { location } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
 
@@ -41,7 +42,11 @@ const MapScreen: React.FC = () => {
                 longitude: restaurant.geometry.location.lng,
               }}
             >
-              <Callout>
+              <Callout
+                onPress={() =>
+                  navigation.navigate("restaurantDetail", { restaurant })
+                }
+              >
                 <MapCallout restaurant={restaurant} />
               </Callout>
             </Marker>
