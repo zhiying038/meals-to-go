@@ -3,8 +3,9 @@ import { View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { tw } from "config/tailwind";
 import { LocationContext } from "contexts/LocationContext";
+import { Props } from "./props";
 
-const SearchComponent: React.FC = () => {
+const SearchComponent: React.FC<Props> = ({ onToggle, isToggled }) => {
   const { keyword, onSearchQuery } = useContext(LocationContext);
   const [searchText, setSearchText] = useState<string>(keyword);
 
@@ -15,6 +16,8 @@ const SearchComponent: React.FC = () => {
   return (
     <View style={tw("p-4")}>
       <Searchbar
+        icon={isToggled ? "heart" : "heart-outline"}
+        onIconPress={onToggle}
         value={searchText}
         onSubmitEditing={() => {
           onSearchQuery(searchText);

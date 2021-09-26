@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   StatusBar,
   SafeAreaView,
@@ -7,14 +7,19 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
+import { FavouriteBar } from "components/FavouriteBar";
 import { RestaurantInfo } from "components/RestaurantInfo";
 import { Search } from "components/Search";
 import { tw } from "config/tailwind";
+import { FavouriteContext } from "contexts/FavouriteContext";
 import { RestaurantsContext } from "contexts/RestaurantsContext";
 import { Props } from "./props";
 
 const RestaurantsScreen: React.FC<Props> = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantsContext);
+  const { favourites } = useContext(FavouriteContext);
+
+  const [isToggled, setIsToggled] = useState<boolean>(false);
 
   return (
     <SafeAreaView
@@ -31,7 +36,14 @@ const RestaurantsScreen: React.FC<Props> = ({ navigation }) => {
         </View>
       )}
 
-      <Search />
+      <Search onToggle={() => setIsToggled(!isToggled)} isToggled={isToggled} />
+
+      {isToggled && (
+        <FavouriteBar
+          favourites={favourites}
+          onNavigate={navigation.navigate}
+        />
+      )}
 
       <FlatList
         data={restaurants}
