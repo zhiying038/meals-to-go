@@ -10,7 +10,6 @@ const SearchComponent: React.FC = () => {
 
   useEffect(() => {
     onSearchQuery(searchText);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchText]);
 
   return (
