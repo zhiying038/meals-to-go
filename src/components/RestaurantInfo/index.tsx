@@ -8,7 +8,7 @@ import { useStyles } from "./styles";
 
 const RestaurantInfoComponent: React.FC<Props> = (props) => {
   const { restaurant, className } = props;
-  const { name, photos, address, rating, isOpen, isClosedTemporarily } =
+  const { name, photos, vicinity, rating, isOpen, isClosedTemporarily } =
     restaurant || {};
 
   const { wrapperShadowStyles, shopClosedStyles } = useStyles();
@@ -47,23 +47,10 @@ const RestaurantInfoComponent: React.FC<Props> = (props) => {
           />
         </View>
 
-        <Text style={tw("text-sm")}>{address}</Text>
+        <Text style={tw("text-sm")}>{vicinity}</Text>
       </View>
     </View>
   );
-};
-
-RestaurantInfoComponent.defaultProps = {
-  restaurant: {
-    name: "Some Restaurant",
-    photos: [
-      "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
-    ],
-    address: "100 Some random street",
-    isOpen: true,
-    rating: 3,
-    isClosedTemporarily: false,
-  },
 };
 
 export const RestaurantInfo = RestaurantInfoComponent;

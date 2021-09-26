@@ -9,7 +9,7 @@ export type RestaurantProps = {
   name: string;
   icon?: ReactNode;
   photos: string[];
-  address: string;
+  vicinity: string;
   isOpen: boolean;
   rating: number;
   isClosedTemporarily: boolean;
