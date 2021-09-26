@@ -13,10 +13,12 @@ const RestaurantInfoComponent: React.FC<Props> = ({ restaurant }) => {
 
   return (
     <Card elevation={2}>
-      <View>
+      <View style={tw("p-4")}>
         <Image source={{ uri: photos?.[0], height: 150 }} resizeMode="cover" />
-        <View style={tw("p-2")}>
-          <Text style={tw("text-primary text-base font-semibold")}>{name}</Text>
+        <View>
+          <Text style={tw("text-primary text-base font-semibold mt-2")}>
+            {name}
+          </Text>
           <View style={tw("flex-row")}>
             <View style={tw("flex-grow items-start")}>
               <AirbnbRating
@@ -29,7 +31,9 @@ const RestaurantInfoComponent: React.FC<Props> = ({ restaurant }) => {
 
             <View style={tw("justify-end flex-row items-center")}>
               {isClosedTemporarily && (
-                <Text style={tw("text-error mr-2")}>CLOSED TEMPORARILY</Text>
+                <Text style={tw("text-error mr-2 text-xs tracking-tighter")}>
+                  CLOSED TEMPORARILY
+                </Text>
               )}
               {isOpen && (
                 <SvgXml xml={Open} width={20} height={20} style={tw("mr-2")} />
