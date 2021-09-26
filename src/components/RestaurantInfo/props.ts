@@ -12,6 +12,7 @@ export type RestaurantProps = {
   rating: number;
   isClosedTemporarily: boolean;
   geometry: GeometryProps;
+  placeId?: string;
 };
 
 export type GeometryProps = {
