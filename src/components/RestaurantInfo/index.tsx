@@ -8,7 +8,7 @@ import { tw } from "config/tailwind";
 import { Props, RestaurantProps } from "./props";
 
 const RestaurantInfoComponent: React.FC<Props> = ({ restaurant }) => {
-  const { name, photos, rating, isClosedTemporarily, isOpen, icon } =
+  const { name, photos, rating, isClosedTemporarily, isOpen, icon, vicinity } =
     restaurant || {};
 
   return (
@@ -37,6 +37,7 @@ const RestaurantInfoComponent: React.FC<Props> = ({ restaurant }) => {
               <Image source={{ uri: icon, height: 15, width: 15 }} />
             </View>
           </View>
+          <Text style={tw("mt-1")}>{vicinity}</Text>
         </View>
       </View>
     </Card>

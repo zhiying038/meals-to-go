@@ -4,7 +4,7 @@ import {
   SafeAreaView,
   View,
   FlatList,
-  Pressable,
+  TouchableOpacity,
 } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { RestaurantInfo } from "components/RestaurantInfo";
@@ -37,11 +37,17 @@ const RestaurantsScreen: React.FC<Props> = ({ navigation }) => {
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            <Pressable onPress={() => navigation.navigate("restaurantDetail")}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("restaurantDetail", {
+                  restaurant: item,
+                })
+              }
+            >
               <View style={tw("mb-4")}>
                 <RestaurantInfo restaurant={item} />
               </View>
-            </Pressable>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={(item) => item.name.toString()}

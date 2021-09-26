@@ -1,7 +1,9 @@
 import React from "react";
-import { Text } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { Restaurants } from "screens";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
+import { Restaurants, RestaurantDetail } from "screens";
 
 export type StacksList = {
   restaurants: undefined;
@@ -16,13 +18,11 @@ export const RestaurantNavigator = () => {
       screenOptions={{
         gestureEnabled: true,
         headerShown: false,
+        ...TransitionPresets.ModalPresentationIOS,
       }}
     >
       <Stack.Screen name="restaurants" component={Restaurants} />
-      <Stack.Screen
-        name="restaurantDetail"
-        component={() => <Text>Restaurant Details</Text>}
-      />
+      <Stack.Screen name="restaurantDetail" component={RestaurantDetail} />
     </Stack.Navigator>
   );
 };
