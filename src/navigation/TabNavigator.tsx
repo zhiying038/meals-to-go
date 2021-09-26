@@ -4,10 +4,11 @@ import {
   createBottomTabNavigator,
   BottomTabBar,
 } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import { tw } from "config/tailwind";
 import { colors } from "config/theme";
-import { Restaurants, Map, Settings } from "screens";
+import { RestaurantNavigator } from "navigation/RestaurantStack";
+import { Map, Settings } from "screens";
 
 export type TabsList = {
   restaurant: undefined;
@@ -45,7 +46,7 @@ export const TabNavigator = () => {
     >
       <Tab.Screen
         name="restaurant"
-        component={Restaurants}
+        component={RestaurantNavigator}
         options={() => ({
           tabBarLabel: "Restaurants",
           headerShown: false,

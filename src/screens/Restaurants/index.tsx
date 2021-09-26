@@ -1,12 +1,19 @@
 import React, { useContext } from "react";
-import { StatusBar, SafeAreaView, View, FlatList } from "react-native";
+import {
+  StatusBar,
+  SafeAreaView,
+  View,
+  FlatList,
+  Pressable,
+} from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { RestaurantInfo } from "components/RestaurantInfo";
 import { Search } from "components/Search";
 import { tw } from "config/tailwind";
 import { RestaurantsContext } from "contexts/RestaurantsContext";
+import { Props } from "./props";
 
-const RestaurantsScreen: React.FC = () => {
+const RestaurantsScreen: React.FC<Props> = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantsContext);
 
   return (
@@ -30,9 +37,11 @@ const RestaurantsScreen: React.FC = () => {
         data={restaurants}
         renderItem={({ item }) => {
           return (
-            <View style={tw("mb-4")}>
-              <RestaurantInfo restaurant={item} />
-            </View>
+            <Pressable onPress={() => navigation.navigate("restaurantDetail")}>
+              <View style={tw("mb-4")}>
+                <RestaurantInfo restaurant={item} />
+              </View>
+            </Pressable>
           );
         }}
         keyExtractor={(item) => item.name.toString()}
