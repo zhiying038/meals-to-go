@@ -1,17 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { StatusBar, SafeAreaView, View, FlatList } from "react-native";
-import { Searchbar, ActivityIndicator, Colors } from "react-native-paper";
+import { ActivityIndicator, Colors } from "react-native-paper";
 import { RestaurantInfo } from "components/RestaurantInfo";
+import { Search } from "components/Search";
 import { tw } from "config/tailwind";
 import { RestaurantsContext } from "contexts/RestaurantsContext";
 
 const RestaurantsScreen: React.FC = () => {
-  const [searchText, setSearchText] = useState<string>("");
-  const { restaurants, isLoading, error } = useContext(RestaurantsContext);
-
-  const onChangeSearch = (query: string) => {
-    setSearchText(query);
-  };
+  const { restaurants, isLoading } = useContext(RestaurantsContext);
 
   return (
     <SafeAreaView
@@ -28,13 +24,8 @@ const RestaurantsScreen: React.FC = () => {
         </View>
       )}
 
-      <View style={tw("p-4")}>
-        <Searchbar
-          value={searchText}
-          onChange={(e) => onChangeSearch(e.nativeEvent.text)}
-          placeholder="Search..."
-        />
-      </View>
+      <Search />
+
       <FlatList
         data={restaurants}
         renderItem={({ item }) => {
