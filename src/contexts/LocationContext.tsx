@@ -3,7 +3,7 @@ import { locationRequest, locationTransform } from "services/location.service";
 
 export type ContextProps = {
   isLoading: boolean;
-  location: { lat: string; lng: string };
+  location: { lat: number; lng: number; viewport: any };
   error: string;
   onSearchQuery: (value: string) => void;
   keyword: string;
