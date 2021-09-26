@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { tw } from "config/tailwind";
@@ -7,6 +7,11 @@ import { LocationContext } from "contexts/LocationContext";
 const SearchComponent: React.FC = () => {
   const { keyword, onSearchQuery } = useContext(LocationContext);
   const [searchText, setSearchText] = useState<string>(keyword);
+
+  useEffect(() => {
+    onSearchQuery(searchText);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchText]);
 
   return (
     <View style={tw("p-4")}>
