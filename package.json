@@ -10,6 +10,7 @@
     "lint:fix": "eslint . --ext .tsx --fix"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.15.8",
     "@react-navigation/bottom-tabs": "^6.0.3",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/stack": "^6.0.7",

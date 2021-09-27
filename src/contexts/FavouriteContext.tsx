@@ -1,5 +1,6 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import filter from "lodash/filter";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type Props = {
   favourites: any[];
@@ -12,6 +13,26 @@ export const FavouriteContext = createContext<Props>(null);
 export const FavouriteContextProvider: React.FC = ({ children }) => {
   const [favourites, setFavourites] = useState([]);
 
+  const onSaveFavourite = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem("favourites", jsonValue);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const onLoadFavourites = async () => {
+    try {
+      const value = await AsyncStorage.getItem("favourites");
+      if (value !== null) {
+        setFavourites(JSON.parse(value));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const onAdd = (restaurant) => {
     setFavourites([...favourites, restaurant]);
   };
@@ -23,6 +44,14 @@ export const FavouriteContextProvider: React.FC = ({ children }) => {
     );
     setFavourites(newFavourites);
   };
+
+  useEffect(() => {
+    onLoadFavourites();
+  }, []);
+
+  useEffect(() => {
+    onSaveFavourite(favourites);
+  }, [favourites]);
 
   return (
     <FavouriteContext.Provider
