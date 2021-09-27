@@ -1,22 +1,18 @@
-import {
-  FIREBASE_API_KEY,
-  FIREBASE_APP_ID,
-  FIREBASE_AUTH_DOMAIN,
-  FIREBASE_MESSAGING_ID,
-  FIREBASE_PROJECT_ID,
-  FIREBASE_STORAGE_BUCKET,
-} from "react-native-dotenv";
 import * as firebase from "firebase/app";
+import "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: FIREBASE_API_KEY,
-  authDomain: FIREBASE_AUTH_DOMAIN,
-  projectId: FIREBASE_PROJECT_ID,
-  storageBucket: FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: FIREBASE_MESSAGING_ID,
-  appId: FIREBASE_APP_ID,
+  apiKey: "AIzaSyBUrXui2eL2dY2kWu-rXN29RKUf7XfiALE",
+  authDomain: "mealstogo-31d65.firebaseapp.com",
+  projectId: "mealstogo-31d65",
+  storageBucket: "mealstogo-31d65.appspot.com",
+  messagingSenderId: "549294961757",
+  appId: "1:549294961757:web:3ff2a0de52f648314ec9b4",
 };
 
-firebase.initializeApp(firebaseConfig);
+let firebaseApp: firebase.default.app.App;
+if (!firebase.default.apps.length) {
+  firebaseApp = firebase.default.initializeApp(firebaseConfig);
+}
 
-export const Firebase = firebaseConfig;
+export const FirebaseApp = firebaseApp;
