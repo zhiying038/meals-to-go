@@ -1,4 +1,4 @@
-export const spacing = {
+module.exports = {
   xs: "0px",
   sm: "4px",
   md: "8px",

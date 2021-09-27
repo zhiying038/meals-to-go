@@ -2,6 +2,7 @@
   "extends": "@react-native-community",
   "rules": {
     "quotes": [2, "double", { "avoidEscape": true }],
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "react-native/no-inline-styles": "off"
   }
 }
