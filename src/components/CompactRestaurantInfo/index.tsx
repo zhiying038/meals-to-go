@@ -1,19 +1,15 @@
 import React from "react";
 import { View, Image, Text, Platform } from "react-native";
 import WebView from "react-native-webview";
-import { RestaurantInfoProps } from "components/RestaurantInfo";
 import { tw } from "config/tailwind";
-
-type Props = {
-  restaurant: RestaurantInfoProps;
-};
+import { Props } from "./props";
 
 const isAndroid = Platform.OS === "android";
 
-const CompactInfoComponent: React.FC<Props> = ({ restaurant }) => {
+const CompactInfoComponent: React.FC<Props> = ({ restaurant, isMap }) => {
   return (
     <View style={tw("max-w-xs items-center p-4")}>
-      {!isAndroid ? (
+      {!isAndroid && !isMap ? (
         <Image
           style={tw("h-24 w-32 rounded-xl")}
           source={{ uri: restaurant.photos[0] }}
@@ -29,6 +25,10 @@ const CompactInfoComponent: React.FC<Props> = ({ restaurant }) => {
       </Text>
     </View>
   );
+};
+
+CompactInfoComponent.defaultProps = {
+  isMap: false,
 };
 
 export const CompactRestaurantInfo = CompactInfoComponent;

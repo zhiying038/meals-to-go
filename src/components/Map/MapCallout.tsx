@@ -7,7 +7,7 @@ type Props = {
 };
 
 const MapCalloutComponent: React.FC<Props> = ({ restaurant }) => {
-  return <CompactRestaurantInfo restaurant={restaurant} />;
+  return <CompactRestaurantInfo restaurant={restaurant} isMap />;
 };
 
 export default MapCalloutComponent;
