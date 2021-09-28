@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground } from "react-native";
+import { ImageBackground, View } from "react-native";
 import { tw } from "config/tailwind";
 
 const LoginCoverComponent: React.FC = ({ children }) => {
@@ -8,7 +8,21 @@ const LoginCoverComponent: React.FC = ({ children }) => {
       source={require("assets/home_bg.jpg")}
       style={tw("flex-1 items-center justify-center")}
     >
-      {children}
+      <View
+        style={[
+          { backgroundColor: "rgba(255, 255, 255, 0.3)" },
+          tw("absolute w-full h-full items-center justify-center"),
+        ]}
+      >
+        <View
+          style={[
+            { backgroundColor: "rgba(255, 255, 255, 0.7)" },
+            tw("items-center justify-center w-3/4 h-1/4 p-6"),
+          ]}
+        >
+          {children}
+        </View>
+      </View>
     </ImageBackground>
   );
 };

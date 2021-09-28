@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Introduction } from "screens";
+import { Introduction, Login } from "screens";
 
 const AuthStack = createStackNavigator();
 
@@ -14,7 +14,7 @@ export const AuthNavigator = () => {
       initialRouteName="introduction"
     >
       <AuthStack.Screen name="introduction" component={Introduction} />
-      <AuthStack.Screen name="login" component={() => null} />
+      <AuthStack.Screen name="login" component={Login} />
       <AuthStack.Screen name="register" component={() => null} />
     </AuthStack.Navigator>
   );
