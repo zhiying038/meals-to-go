@@ -4,8 +4,9 @@ import { useForm, Controller } from "react-hook-form";
 import { LoginCover } from "components/LoginCover";
 import { TextInput, Button } from "components/Common";
 import { tw } from "config/tailwind";
+import { Props } from "./props";
 
-const RegisterScreen: React.FC = () => {
+const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   const {
     control,
     handleSubmit,
@@ -22,7 +23,7 @@ const RegisterScreen: React.FC = () => {
   };
 
   return (
-    <LoginCover>
+    <LoginCover onBackPress={() => navigation.goBack()}>
       <View style={tw("mb-4 w-full")}>
         <Controller
           control={control}

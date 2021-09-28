@@ -5,7 +5,7 @@ import { Props } from "./props";
 
 const IntroductionScreen: React.FC<Props> = ({ navigation }) => {
   return (
-    <LoginCover>
+    <LoginCover isIntroduction>
       <Button
         block
         center
