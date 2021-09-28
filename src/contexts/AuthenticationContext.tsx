@@ -1,13 +1,13 @@
 import React from "react";
-import * as firebase from "firebase/app";
+import firebase from "firebase/app";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { FirebaseApp } from "config/firebase";
+import { auth } from "config/firebase";
 
 export type ContextProps = {
   isAuthenticated: boolean;
   isLoading: boolean;
   user: any;
-  error: firebase.default.FirebaseError;
+  error: firebase.FirebaseError;
   onUserLogin: (email: string, password: string) => void;
 };
 
@@ -15,7 +15,7 @@ export const AuthenticationContext = React.createContext<ContextProps>(null);
 
 export const AuthenticationContextProvider: React.FC = ({ children }) => {
   const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(FirebaseApp.auth());
+    useSignInWithEmailAndPassword(auth);
 
   return (
     <AuthenticationContext.Provider

@@ -29,9 +29,9 @@ const IntroductionScreen: React.FC<Props> = ({ navigation }) => {
             Login
           </Button>
           <Button
-            icon="lock-open-outline"
+            icon="email"
             mode="contained"
-            style={tw("mt-4 w-full p-2")}
+            style={tw("mt-4 w-full p-2 bg-primary")}
             onPress={() => navigation.navigate("register")}
           >
             Register
