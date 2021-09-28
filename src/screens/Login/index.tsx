@@ -34,6 +34,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
               placeholder="Enter email"
               value={value}
               className="h-12"
+              textContentType="emailAddress"
               keyboardType="email-address"
               onChangeText={(val) => onChange(val)}
             />
@@ -51,7 +52,10 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
           }}
           render={({ field: { onChange, value } }) => (
             <TextInput
+              secureTextEntry
+              textContentType="password"
               placeholder="Enter password"
+              autoCapitalize="none"
               value={value}
               className="h-12"
               onChangeText={(val) => onChange(val)}
