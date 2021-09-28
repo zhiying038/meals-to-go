@@ -7,21 +7,24 @@ const IntroductionScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <LoginCover>
       <Button
-        icon="lock-open-outline"
-        mode="contained"
-        className="bg-primary w-full p-2"
+        block
+        center
+        label="Login"
+        wrapperClassName="h-10 mb-4"
+        touchableClassName="bg-primary"
+        labelClassName="text-white"
         onPress={() => navigation.navigate("login")}
-      >
-        Login
-      </Button>
+      />
+
       <Button
-        icon="email"
-        mode="contained"
-        className="mt-4 w-full p-2 bg-primary"
+        block
+        center
+        label="Register"
+        wrapperClassName="h-10"
+        touchableClassName="bg-primary"
+        labelClassName="text-white"
         onPress={() => navigation.navigate("register")}
-      >
-        Register
-      </Button>
+      />
     </LoginCover>
   );
 };

@@ -1,8 +1,8 @@
 import React, { ReactNode } from "react";
-import { View, TouchableOpacity, Text } from "react-native";
+import { View, Text } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { LoginCover } from "components/LoginCover";
-import { TextInput } from "components/Common";
+import { TextInput, Button } from "components/Common";
 import { tw } from "config/tailwind";
 import { InputProps } from "./props";
 
@@ -61,9 +61,15 @@ const LoginScreen: React.FC = () => {
         {errors?.password && renderErrorMesssage("password", errors)}
       </View>
 
-      <TouchableOpacity onPress={handleSubmit(onSubmit)} style={tw("mt-4")}>
-        <Text>Login</Text>
-      </TouchableOpacity>
+      <Button
+        block
+        center
+        label="Login"
+        wrapperClassName="mt-3 h-10"
+        touchableClassName="bg-primary"
+        labelClassName="text-white"
+        onPress={handleSubmit(onSubmit)}
+      />
     </LoginCover>
   );
 };

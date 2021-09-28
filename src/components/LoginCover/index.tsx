@@ -17,7 +17,7 @@ const LoginCoverComponent: React.FC = ({ children }) => {
         <View
           style={[
             { backgroundColor: "rgba(255, 255, 255, 0.7)" },
-            tw("items-center justify-center w-3/4 h-1/4 p-6"),
+            tw("items-center justify-center w-3/4 p-4"),
           ]}
         >
           {children}
