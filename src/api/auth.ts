@@ -7,3 +7,7 @@ export const loginUserRequest = (email: string, password: string) => {
 export const registerUserRequest = (email: string, password: string) => {
   return firebase.auth().createUserWithEmailAndPassword(email, password);
 };
+
+export const logoutUserRequest = () => {
+  return firebase.auth().signOut();
+};

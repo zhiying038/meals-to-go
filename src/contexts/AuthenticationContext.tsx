@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { auth } from "config/firebase";
-import { loginUserRequest, registerUserRequest } from "../api/auth";
+import {
+  loginUserRequest,
+  registerUserRequest,
+  logoutUserRequest,
+} from "../api/auth";
 
 export type ContextProps = {
-  isAuthenticated: boolean;
-  isLoading: boolean;
   user: any;
   error: string;
+  isLoading: boolean;
+  isAuthenticated: boolean;
+  onUserLogout: () => void;
   onUserLogin: (email: string, password: string) => void;
   onUserRegister: (email: string, password: string) => void;
 };
@@ -53,6 +58,11 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
       });
   };
 
+  const onUserLogout = () => {
+    setUser(null);
+    logoutUserRequest();
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
@@ -61,6 +71,7 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
         isLoading,
         error,
         onUserLogin,
+        onUserLogout,
         onUserRegister,
       }}
     >
