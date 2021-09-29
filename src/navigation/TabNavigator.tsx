@@ -8,10 +8,11 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { tw } from "config/tailwind";
 import { colors } from "config/theme";
 import { RestaurantNavigator } from "navigation/RestaurantStack";
+import { SettingsNavigator } from "navigation/SettingsNavigator";
 import { FavouriteContextProvider } from "contexts/FavouriteContext";
 import { LocationContextProvider } from "contexts/LocationContext";
 import { RestaurantsContextProvider } from "contexts/RestaurantsContext";
-import { Map, Settings } from "screens";
+import { Map } from "screens";
 
 export type TabsList = {
   restaurant: undefined;
@@ -68,7 +69,7 @@ export const TabNavigator = () => {
             />
             <Tab.Screen
               name="settings"
-              component={Settings}
+              component={SettingsNavigator}
               options={() => ({
                 tabBarLabel: "Settings",
                 headerShown: false,
