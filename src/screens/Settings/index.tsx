@@ -19,10 +19,10 @@ const SettingsScreen: React.FC<Props> = ({ navigation }) => {
 
       <List.Section>
         <List.Item
-          title="Logout"
+          title="Favourites"
           style={tw("p-4")}
           description="View your favourites"
-          onPress={() => navigation.navigate("favourites")}
+          onPress={() => navigation.navigate("Favourites")}
           left={(props) => <List.Icon {...props} color="black" icon="heart" />}
         />
 

@@ -1,3 +1,4 @@
+export * from "./Favourites";
 export * from "./Introduction";
 export * from "./Login";
 export * from "./Map";
