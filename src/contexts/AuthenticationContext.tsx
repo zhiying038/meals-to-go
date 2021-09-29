@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import firebase from "firebase";
 import { auth } from "config/firebase";
 import {
   loginUserRequest,
@@ -7,7 +8,7 @@ import {
 } from "../api/auth";
 
 export type ContextProps = {
-  user: any;
+  user: firebase.User;
   error: string;
   isLoading: boolean;
   isAuthenticated: boolean;

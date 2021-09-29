@@ -8,6 +8,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { tw } from "config/tailwind";
 import { colors } from "config/theme";
 import { RestaurantNavigator } from "navigation/RestaurantStack";
+import { FavouriteContextProvider } from "contexts/FavouriteContext";
+import { LocationContextProvider } from "contexts/LocationContext";
+import { RestaurantsContextProvider } from "contexts/RestaurantsContext";
 import { Map, Settings } from "screens";
 
 export type TabsList = {
@@ -26,48 +29,54 @@ const Tab = createBottomTabNavigator<TabsList>();
 
 export const TabNavigator = () => {
   return (
-    <Tab.Navigator
-      initialRouteName="restaurant"
-      tabBar={(props) => {
-        return (
-          <View style={tw("inset-x-0 bottom-0 absolute")}>
-            <BottomTabBar {...props} />
-          </View>
-        );
-      }}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
-          const iconName = TabIconList[route.name];
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: colors.primary,
-        tabBarInactiveTintColor: colors.secondary,
-      })}
-    >
-      <Tab.Screen
-        name="restaurant"
-        component={RestaurantNavigator}
-        options={() => ({
-          tabBarLabel: "Restaurants",
-          headerShown: false,
-        })}
-      />
-      <Tab.Screen
-        name="map"
-        component={Map}
-        options={() => ({
-          tabBarLabel: "Map",
-          headerShown: false,
-        })}
-      />
-      <Tab.Screen
-        name="settings"
-        component={Settings}
-        options={() => ({
-          tabBarLabel: "Settings",
-          headerShown: false,
-        })}
-      />
-    </Tab.Navigator>
+    <FavouriteContextProvider>
+      <LocationContextProvider>
+        <RestaurantsContextProvider>
+          <Tab.Navigator
+            initialRouteName="restaurant"
+            tabBar={(props) => {
+              return (
+                <View style={tw("inset-x-0 bottom-0 absolute")}>
+                  <BottomTabBar {...props} />
+                </View>
+              );
+            }}
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ color, size }) => {
+                const iconName = TabIconList[route.name];
+                return <Ionicons name={iconName} size={size} color={color} />;
+              },
+              tabBarActiveTintColor: colors.primary,
+              tabBarInactiveTintColor: colors.secondary,
+            })}
+          >
+            <Tab.Screen
+              name="restaurant"
+              component={RestaurantNavigator}
+              options={() => ({
+                tabBarLabel: "Restaurants",
+                headerShown: false,
+              })}
+            />
+            <Tab.Screen
+              name="map"
+              component={Map}
+              options={() => ({
+                tabBarLabel: "Map",
+                headerShown: false,
+              })}
+            />
+            <Tab.Screen
+              name="settings"
+              component={Settings}
+              options={() => ({
+                tabBarLabel: "Settings",
+                headerShown: false,
+              })}
+            />
+          </Tab.Navigator>
+        </RestaurantsContextProvider>
+      </LocationContextProvider>
+    </FavouriteContextProvider>
   );
 };
