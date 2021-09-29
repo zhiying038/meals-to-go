@@ -1,12 +1,15 @@
-import React, { ReactNode } from "react";
+import React, { useContext } from "react";
 import { View, Text } from "react-native";
+import { ActivityIndicator, Colors } from "react-native-paper";
 import { useForm, Controller } from "react-hook-form";
 import { LoginCover } from "components/LoginCover";
 import { TextInput, Button } from "components/Common";
 import { tw } from "config/tailwind";
 import { InputProps, Props } from "./props";
+import { AuthenticationContext } from "contexts/AuthenticationContext";
 
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
+  const { onUserLogin, isLoading, error } = useContext(AuthenticationContext);
   const {
     control,
     handleSubmit,
@@ -14,10 +17,10 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   } = useForm();
 
   const onSubmit = (values: InputProps) => {
-    console.log(values);
+    onUserLogin(values.email, values.password);
   };
 
-  const renderErrorMesssage = (field: string, err): ReactNode => {
+  const renderErrorMesssage = (field: string, err) => {
     const fieldError = err?.[field];
     return <Text style={tw("text-red-600 mt-1")}>{fieldError?.message}</Text>;
   };
@@ -33,6 +36,7 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
             <TextInput
               placeholder="Enter email"
               value={value}
+              autoCapitalize="none"
               className="h-12"
               textContentType="emailAddress"
               keyboardType="email-address"
@@ -65,15 +69,25 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         {errors?.password && renderErrorMesssage("password", errors)}
       </View>
 
-      <Button
-        block
-        center
-        label="Login"
-        wrapperClassName="mt-3 h-10"
-        touchableClassName="bg-primary"
-        labelClassName="text-white"
-        onPress={handleSubmit(onSubmit)}
-      />
+      {error && <Text style={tw("text-red-600 mt-2")}>{error}</Text>}
+
+      {!isLoading ? (
+        <Button
+          block
+          center
+          label="Login"
+          wrapperClassName="mt-3 h-10"
+          touchableClassName="bg-primary"
+          labelClassName="text-white"
+          onPress={handleSubmit(onSubmit)}
+        />
+      ) : (
+        <ActivityIndicator
+          animating
+          color={Colors.blue300}
+          style={tw("mt-3")}
+        />
+      )}
     </LoginCover>
   );
 };
