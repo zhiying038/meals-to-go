@@ -4,7 +4,7 @@ import {
   restaurantsRequest,
   restaurantsTransform,
 } from "services/restaurant.service";
-import { LocationContext } from "./LocationContext";
+import { useLocation } from "./LocationContext";
 
 export type ContextProps = {
   restaurants: RestaurantInfoProps[];
@@ -19,7 +19,7 @@ export const RestaurantsContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const { location } = useContext(LocationContext);
+  const { location } = useLocation();
 
   const retrieveRestaurants = (locate: string) => {
     setIsLoading(true);
@@ -57,4 +57,12 @@ export const RestaurantsContextProvider = ({ children }) => {
       {children}
     </RestaurantsContext.Provider>
   );
+};
+
+export const useRestaurant = () => {
+  const context = useContext(RestaurantsContext);
+  if (context === undefined) {
+    throw new Error("useLocation must be used within a RestaurantProvider");
+  }
+  return context;
 };

@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { SafeAreaView, StatusBar, View, Text } from "react-native";
 import { List, Avatar } from "react-native-paper";
-import { AuthenticationContext } from "contexts/AuthenticationContext";
+import { useAuth } from "contexts/AuthenticationContext";
 import { tw } from "config/tailwind";
 import { Props } from "./props";
 
 const SettingsScreen: React.FC<Props> = ({ navigation }) => {
-  const { onUserLogout, user } = useContext(AuthenticationContext);
+  const { onUserLogout, user } = useAuth();
 
   return (
     <SafeAreaView

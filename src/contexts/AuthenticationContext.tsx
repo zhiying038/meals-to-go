@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import firebase from "firebase";
 import { auth } from "config/firebase";
 import {
   loginUserRequest,
   registerUserRequest,
   logoutUserRequest,
-} from "../api/auth";
+} from "queries/auth";
 
 export type ContextProps = {
   user: firebase.User;
@@ -19,7 +19,7 @@ export type ContextProps = {
 
 export const AuthenticationContext = React.createContext<ContextProps>(null);
 
-export const AuthenticationContextProvider: React.FC = ({ children }) => {
+export const AuthenticationContextProvider: React.FC = (props) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -64,19 +64,23 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
     logoutUserRequest();
   };
 
-  return (
-    <AuthenticationContext.Provider
-      value={{
-        user,
-        isAuthenticated: !!user,
-        isLoading,
-        error,
-        onUserLogin,
-        onUserLogout,
-        onUserRegister,
-      }}
-    >
-      {children}
-    </AuthenticationContext.Provider>
-  );
+  const value = {
+    user,
+    isAuthenticated: !!user,
+    isLoading,
+    error,
+    onUserLogin,
+    onUserLogout,
+    onUserRegister,
+  };
+
+  return <AuthenticationContext.Provider value={value} {...props} />;
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthenticationContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within a AuthenticationProvider");
+  }
+  return context;
 };

@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import MapView, { Marker, Callout } from "react-native-maps";
 import { MapSearch, MapCallout } from "components/Map";
 import { tw } from "config/tailwind";
-import { LocationContext } from "contexts/LocationContext";
-import { RestaurantsContext } from "contexts/RestaurantsContext";
+import { useLocation } from "contexts/LocationContext";
+import { useRestaurant } from "contexts/RestaurantsContext";
 import { Props } from "./props";
 
 const MapScreen: React.FC<Props> = ({ navigation }) => {
-  const { location } = useContext(LocationContext);
-  const { restaurants = [] } = useContext(RestaurantsContext);
+  const { location } = useLocation();
+  const { restaurants = [] } = useRestaurant();
 
   const [latDelta, setLatDelta] = useState(0);
 

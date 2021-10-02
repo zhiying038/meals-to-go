@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { locationRequest, locationTransform } from "services/location.service";
 
 export type ContextProps = {
@@ -11,7 +11,7 @@ export type ContextProps = {
 
 export const LocationContext = React.createContext<ContextProps>(null);
 
-export const LocationContextProvider = ({ children }) => {
+export const LocationContextProvider = (props) => {
   const [keyword, setKeyword] = useState<string>("San Francisco");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>(null);
@@ -39,17 +39,21 @@ export const LocationContextProvider = ({ children }) => {
       });
   }, [keyword]);
 
-  return (
-    <LocationContext.Provider
-      value={{
-        isLoading,
-        error,
-        location,
-        onSearchQuery,
-        keyword,
-      }}
-    >
-      {children}
-    </LocationContext.Provider>
-  );
+  const value = {
+    isLoading,
+    error,
+    location,
+    onSearchQuery,
+    keyword,
+  };
+
+  return <LocationContext.Provider value={value} {...props} />;
+};
+
+export const useLocation = () => {
+  const context = useContext(LocationContext);
+  if (context === undefined) {
+    throw new Error("useLocation must be used within a LocationProvider");
+  }
+  return context;
 };

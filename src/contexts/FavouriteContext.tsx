@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AuthenticationContext } from "contexts/AuthenticationContext";
+import { useAuth } from "contexts/AuthenticationContext";
 import filter from "lodash/filter";
 
 export type Props = {
@@ -11,10 +11,9 @@ export type Props = {
 
 export const FavouriteContext = createContext<Props>(null);
 
-export const FavouriteContextProvider: React.FC = ({ children }) => {
-  const { user } = useContext(AuthenticationContext);
-
+export const FavouriteContextProvider: React.FC = (props) => {
   const [favourites, setFavourites] = useState([]);
+  const { user } = useAuth();
 
   const onSaveFavourite = async (value, uid: string) => {
     try {
@@ -60,15 +59,19 @@ export const FavouriteContextProvider: React.FC = ({ children }) => {
     }
   }, [favourites, user]);
 
-  return (
-    <FavouriteContext.Provider
-      value={{
-        favourites,
-        addToFavourites: onAdd,
-        removeFromFavourites: onRemove,
-      }}
-    >
-      {children}
-    </FavouriteContext.Provider>
-  );
+  const value = {
+    favourites,
+    addToFavourites: onAdd,
+    removeFromFavourites: onRemove,
+  };
+
+  return <FavouriteContext.Provider value={value} {...props} />;
+};
+
+export const useFavourite = () => {
+  const context = useContext(FavouriteContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within a FavouriteContextProvider");
+  }
+  return context;
 };

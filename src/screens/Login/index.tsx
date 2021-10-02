@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { View, Text } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { useForm, Controller } from "react-hook-form";
@@ -6,10 +6,10 @@ import { LoginCover } from "components/LoginCover";
 import { TextInput, Button } from "components/Common";
 import { tw } from "config/tailwind";
 import { InputProps, Props } from "./props";
-import { AuthenticationContext } from "contexts/AuthenticationContext";
+import { useAuth } from "contexts/AuthenticationContext";
 
 const LoginScreen: React.FC<Props> = ({ navigation }) => {
-  const { onUserLogin, isLoading, error } = useContext(AuthenticationContext);
+  const { onUserLogin, isLoading, error } = useAuth();
   const {
     control,
     handleSubmit,

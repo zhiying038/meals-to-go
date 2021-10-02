@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   StatusBar,
   SafeAreaView,
@@ -11,13 +11,13 @@ import { FavouriteBar } from "components/FavouriteBar";
 import { RestaurantInfo } from "components/RestaurantInfo";
 import { Search } from "components/Search";
 import { tw } from "config/tailwind";
-import { FavouriteContext } from "contexts/FavouriteContext";
-import { RestaurantsContext } from "contexts/RestaurantsContext";
+import { useFavourite } from "contexts/FavouriteContext";
+import { useRestaurant } from "contexts/RestaurantsContext";
 import { Props } from "./props";
 
 const RestaurantsScreen: React.FC<Props> = ({ navigation }) => {
-  const { restaurants, isLoading } = useContext(RestaurantsContext);
-  const { favourites } = useContext(FavouriteContext);
+  const { restaurants, isLoading } = useRestaurant();
+  const { favourites } = useFavourite();
 
   const [isToggled, setIsToggled] = useState<boolean>(false);
 

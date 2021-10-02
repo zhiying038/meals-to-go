@@ -1,18 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import { View, Text } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { useForm, Controller } from "react-hook-form";
 import * as EmailValidator from "email-validator";
 import { LoginCover } from "components/LoginCover";
 import { TextInput, Button } from "components/Common";
-import { AuthenticationContext } from "contexts/AuthenticationContext";
+import { useAuth } from "contexts/AuthenticationContext";
 import { tw } from "config/tailwind";
 import { Props, InputProps } from "./props";
 
 const RegisterScreen: React.FC<Props> = ({ navigation }) => {
-  const { onUserRegister, error, isLoading } = useContext(
-    AuthenticationContext
-  );
+  const { onUserRegister, error, isLoading } = useAuth();
   const {
     control,
     getValues,

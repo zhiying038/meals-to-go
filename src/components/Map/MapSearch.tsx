@@ -1,11 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { tw } from "config/tailwind";
-import { LocationContext } from "contexts/LocationContext";
+import { useLocation } from "contexts/LocationContext";
 
 const MapSearchComponent: React.FC = () => {
-  const { keyword, onSearchQuery } = useContext(LocationContext);
+  const { keyword, onSearchQuery } = useLocation();
   const [searchText, setSearchText] = useState<string>(keyword);
 
   useEffect(() => {
