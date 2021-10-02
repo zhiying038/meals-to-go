@@ -17,7 +17,8 @@
       "navigation/*": ["./src/navigation/*"],
       "services/*": ["./src/services/*"],
       "contexts/*": ["./src/contexts/*"],
-      "queries/*": ["./src/queries/*"]
+      "queries/*": ["./src/queries/*"],
+      "animations/*": ["./src/animations/*"]
     }
   }
 }

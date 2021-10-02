@@ -16,6 +16,7 @@ module.exports = function (api) {
             services: ["./src/services"],
             contexts: ["./src/contexts"],
             queries: ["./src/queries"],
+            animations: ["./src/animations"],
           },
           extensions: [".tsx", ".ts", ".js", ".jsx", ".json"],
         },

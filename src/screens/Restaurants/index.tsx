@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
+import { FadeIn } from "animations/FadeIn";
 import { FavouriteBar } from "components/FavouriteBar";
 import { RestaurantInfo } from "components/RestaurantInfo";
 import { Search } from "components/Search";
@@ -57,7 +58,9 @@ const RestaurantsScreen: React.FC<Props> = ({ navigation }) => {
               }
             >
               <View style={tw("mb-4")}>
-                <RestaurantInfo restaurant={item} />
+                <FadeIn>
+                  <RestaurantInfo restaurant={item} />
+                </FadeIn>
               </View>
             </TouchableOpacity>
           );
